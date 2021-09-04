@@ -1,0 +1,16 @@
+[Unit]
+Description="Hmmm"
+After=suspend.target hibernate.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bash -c '\
+	/usr/bin/rmmod i2c_hid_acpi; \
+        /usr/bin/rmmod i2c_hid; \
+        /usr/bin/modprobe i2c_hid; \
+        /usr/bin/modprobe i2c_hid_acpi; '
+
+[Install]
+WantedBy=suspend.target hibernate.target
+
+
